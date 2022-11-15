@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespce:BudgetTracking.Models"
+             x:Class="Budget_Tracking.Views.MainPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="Budget_TrackingListView"
+                     Margin="20"
+                     ItemSelected="BudgetTrackingListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Budget_Tracking">
+
+                        <TextCell Text="{Binding Text}" Detail="{Binding Date, Binding Amount, Binding Expense}"/>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
