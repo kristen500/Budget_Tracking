@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 using System.IO;
 using Budget_Tracking;
 
-namespace BudgetTracking.Views
+namespace Budget_Tracking.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BudgetPage : ContentPage

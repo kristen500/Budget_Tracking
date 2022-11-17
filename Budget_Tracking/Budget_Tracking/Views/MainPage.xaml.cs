@@ -21,7 +21,7 @@ namespace BudgetTracking.Views
 
         protected override void OnAppearing()
         {
-            var BudgetTrackings = new List<BudgetTracking>();
+            var BudgetTrackings = new List<Budget_Tracking>();
             var files = Directory.EnumerateFiles(Enviornment.GetFolderPath(Enviornment.SpecialFolder.LocalApplicationData), "*.notes.txt");
             foreach (var file in files)
             {
