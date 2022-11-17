@@ -11,7 +11,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Budget">
 
-                        <TextCell Text="{Binding Text}" Detail="{Binding Date, Binding Amount, Binding Expense}"/>
+                        <TextCell Text="{Binding Text}" Detail="{Binding Date}"/>
 
                     </DataTemplate>
                 </ListView.ItemTemplate>

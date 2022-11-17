@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
-using Budget_Tracking;
+using Budget_Tracking.Models;
 
 namespace Budget_Tracking.Views
 {
@@ -18,39 +18,43 @@ namespace Budget_Tracking.Views
         {
             InitializeComponent();
         }
-        protected override void Onappearing()
+        protected override void OnAppearing()
         {
-            var Budgetracking = (BudgetTracking)BindingContext;
-            if (!string.IsNullOrEmpty(BudgetTracking.FileName))
+            var budget = (Budget)BindingContext;
+            if (budget !=null && !string.IsNullOrEmpty(budget.FileName))
             {
-                BudgetTracking.Text = File.ReadAllText(BudgetTracking.FileName);
+                BudgetTrackingText.Text = File.ReadAllText(budget.FileName);
             }
         }
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
 
-            todo.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                $"{Path.GetRandomFileName().notes.txt}");
-            filename.WriteAllText(filename, BudgetTrackingText.Text);
+            var budget = (Budget)BindingContext;
+            if (budget == null || string.IsNullOrEmpty(budget.FileName))
+            {
+                budget = new Budget();
+                budget.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                $"{Path.GetRandomFileName()}.notes.txt"); 
+            }
+            File.WriteAllText(budget.FileName, BudgetTrackingText.Text);
             if (Navigation.ModalStack.Count > 0)
             {
-                await Navigation.PopModalAsync();
+                await Navigation.PopModalAsync(); 
             }
             else
             {
-
-                AppShell.Current.CurrentItem = (AppShell.Current as AppShell).MainPageContent;
-
+                Shell.Current.CurrentItem = (Shell.Current as AppShell).MainPageContent;
             }
+
         }
         private async void OnCancelButtonClicked(object sender, EventArgs e)
         {
-            var BudgetTracking = (BudgetTracking)BindingContext;
-            if (File.Exists(BudgetTracking.FileName))
+            var budget = (Budget)BindingContext;
+            if (File.Exists(budget.FileName))
             {
-                File.Delete(BudgetTracking.FileName);
+                File.Delete(budget.FileName);
             }
-            BudgetTracking.Text = string.Empty;
+            BudgetTrackingText.Text = string.Empty;
             await Navigation.PopAsync();
         }
     }

@@ -8,14 +8,14 @@
                   Placeholder="Enter your budget"
                   HeightRequest="100"/>
             <Grid>
-                <Grid.ColumnDefinition>
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                </Grid.ColumnDefinition>
+                </Grid.ColumnDefinitions>
                 <Button Text="Save"
                         Clicked="OnSaveButtonClicked"/>
                 <Button Grid.Column="1"
-                        Text="Delete"
+                        Text="Cancel"
                         Clicked="OnCancelButtonClicked"/>
             </Grid>
 

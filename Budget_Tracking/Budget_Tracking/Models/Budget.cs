@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Budget_Tracking.Models
 {
-    public class Budget_Tracking
+    internal class Budget
+   {
+            public string Text { get; set; }
 
-    {
-        public string Text { get; set; }
-        public string ExpenseDetail { get; set; }
-        public DateTime Date { get; set; }
-        public double Amount { get; set; }
-        public string FileName { get; set; }
+            public DateTime Date { get; set; }
+
+            public string FileName { get; set; }
     }
 
 
-}
+    }
+
+
