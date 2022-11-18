@@ -55,7 +55,7 @@ namespace Budget_Tracking.Views
                 File.Delete(budget.FileName);
             }
             BudgetTrackingText.Text = string.Empty;
-            await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
         }
     }
 }
