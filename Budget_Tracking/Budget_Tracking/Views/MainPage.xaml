@@ -11,7 +11,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Budget">
 
-                        <TextCell Text="{Binding Text}" Detail="{Binding Date}"/>
+                        <TextCell Text="{Binding Text}" Detail="{Binding Date}"
+                                  TextColor="Black" 
+                                    DetailColor="Aqua" />
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
