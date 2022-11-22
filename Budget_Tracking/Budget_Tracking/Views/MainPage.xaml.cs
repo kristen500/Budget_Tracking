@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 using Budget_Tracking.Models;
 using System.IO;
 
-namespace BudgetTracking.Views
+namespace Budget_Tracking.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
@@ -21,27 +21,26 @@ namespace BudgetTracking.Views
 
         protected override void OnAppearing()
         {
-            var BudgetTrackings = new List<BudgetTracking>();
-            var files = Directory.EnumerateFiles(Enviornment.GetFolderPath(Enviornment.SpecialFolder.LocalApplicationData), "*.notes.txt");
+            var budgets = new List<Budget>();
+            var files = Directory.EnumerateFiles(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "*.notes.txt");
             foreach (var file in files)
             {
-                var BudgetTracking = new BudgetTracking
+                var budget = new Budget
                 {
-                    Text = file.ReadAllText(file),
-                    Date = file.GetCreationTime(file),
-                    Amount = file.GetAmount(file),
-                    Expense = file.ReadAllText(file),
+                    Text = File.ReadAllText(file),
+                    Date = File.GetCreationTime(file),
                     FileName = file
                 };
-                BudgetTracking.Add(BudgetTracking);
+                budgets.Add(budget);
             }
-            BudgetTrackingListView.ItemsSource = BudgetTracking.OrderByDescending(E => E.Date);
+            Budget_TrackingListView.ItemsSource = budgets.OrderByDescending(E => E.Date);
         }
         private async void BudgetTrackingListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushModalAsync(new BudgetTrackingPage
+            await Navigation.PushModalAsync(new BudgetPage
             {
-                BindingContext = (BudgetTracking)e.SelectedItem
+                BindingContext = (Budget)e.SelectedItem
             });
         }
     }

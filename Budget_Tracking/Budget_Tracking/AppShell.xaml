@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:BudgetTracking.Views"
-       Title="BudgetTracking"
-       x:Class="BudgetTracking.AppShell">
+       xmlns:local="clr-namespace:Budget_Tracking.Views"
+       Title="Budget_Tracking"
+       x:Class="Budget_Tracking.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -30,8 +30,8 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Home" Icon="icon_about.png" ContentTemplate="{DataTemplate local:MainPage}" />
-        <ShellContent Title="Add" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:BudgetPage}" />
+        <ShellContent x:Name="Home" Title="Home" Icon="icon_about.png" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent x:Name="Add" Title="Add" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:BudgetPage}" />
     </TabBar>
 
     <!--
