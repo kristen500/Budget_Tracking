@@ -47,8 +47,8 @@ namespace Budget_Tracking.Views
                 var addbudget = new Addbudget
                 { Text = File.ReadAllText(budgetfile),
                   Date = File.GetCreationTime(budgetfile),
-                  FileName = budgetfile
-
+                  FileName = budgetfile,
+                  Icon = "Resources/drawable/budgeticon.png"
                 };
                 addbudgets.Add(addbudget);
             }
@@ -56,10 +56,12 @@ namespace Budget_Tracking.Views
             if (budgetfiles.Count() > 0)
             {
                 BudgetButton.IsVisible = false;
+                BudgetListView.IsVisible = true;
             }
             else
             {
                 BudgetButton.IsVisible = true;
+                BudgetListView.IsVisible = false;
             }
         }
         private async void Expense_TrackingListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

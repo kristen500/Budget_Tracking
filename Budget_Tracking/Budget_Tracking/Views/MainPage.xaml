@@ -8,8 +8,8 @@
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="100"/>
+                    
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -21,16 +21,20 @@
 
 
 
-                <ListView x:Name="BudgetListView" Grid.Row="1"
+                <ListView x:Name="BudgetListView" Grid.Row="0"
                           Margin="20"
-                          ItemSelected="BudgetListView_ItemSelected">
-                    <ListView.ItemTemplate>
+                          ItemSelected="BudgetListView_ItemSelected"
+                          IsVisible="false"
+                         >
+                    <ListView.ItemTemplate >
                         <DataTemplate x:DataType="model:Addbudget">
-                            <TextCell  x:Name="BudgetTextCell"
+                            <ImageCell  x:Name="BudgetTextCell"
                                 Text="{Binding Text}" 
                                     Detail="{Binding Date}" 
-                                    TextColor="Blue" 
-                                    DetailColor="LightPink" 
+                                    TextColor="Black"
+                                    DetailColor="Black"
+                                        ImageSource="{Binding Icon}"
+                                      Height="50"
                                     />
 
                         </DataTemplate>
@@ -40,7 +44,7 @@
                 <ListView x:Name="Expense_TrackingListView"
                       Margin="20"
                       ItemSelected="Expense_TrackingListView_ItemSelected"
-                          Grid.Row="2">
+                          Grid.Row="1">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Budget">
                             <TextCell  Text="{Binding Text}" 

@@ -11,6 +11,7 @@ namespace Budget_Tracking.Models
             public DateTime Date { get; set; }
 
             public string FileName { get; set; }
+        
     }
 
 
