@@ -34,7 +34,7 @@ namespace Budget_Tracking.Views
             {
                 budget = new Budget();
                 budget.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                $"{Path.GetRandomFileName()}.notes.txt"); 
+                $"{Path.GetRandomFileName()}.expense.notes.txt"); 
             }
             File.WriteAllText(budget.FileName, BudgetTrackingText.Text);
             if (Navigation.ModalStack.Count > 0)
