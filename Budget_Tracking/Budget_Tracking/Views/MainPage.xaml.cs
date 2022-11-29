@@ -23,7 +23,8 @@ namespace Budget_Tracking.Views
         {
             var budgets = new List<Budget>();
             var files = Directory.EnumerateFiles(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "*.notes.txt");
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "*.expense.notes.txt");
             foreach (var file in files)
             {
                 var budget = new Budget
@@ -34,14 +35,52 @@ namespace Budget_Tracking.Views
                 };
                 budgets.Add(budget);
             }
-            Budget_TrackingListView.ItemsSource = budgets.OrderByDescending(E => E.Date);
+            Expense_TrackingListView.ItemsSource = budgets.OrderByDescending(E => E.Date);
+
+            var addbudgets = new List<Addbudget>();
+            var budgetfiles = Directory.EnumerateFiles(
+                Environment.GetFolderPath
+                (Environment.SpecialFolder.LocalApplicationData),
+               "*.budget.notes.txt");
+            foreach (var budgetfile in budgetfiles)
+            {
+                var addbudget = new Addbudget
+                { Text = File.ReadAllText(budgetfile),
+                  Date = File.GetCreationTime(budgetfile),
+                  FileName = budgetfile
+
+                };
+                addbudgets.Add(addbudget);
+            }
+            BudgetListView.ItemsSource = addbudgets;
+            if (budgetfiles.Count() > 0)
+            {
+                BudgetButton.IsVisible = false;
+            }
+            else
+            {
+                BudgetButton.IsVisible = true;
+            }
         }
-        private async void BudgetTrackingListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void Expense_TrackingListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             await Navigation.PushModalAsync(new BudgetPage
             {
                 BindingContext = (Budget)e.SelectedItem
             });
+        }
+
+        private async void BudgetListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushModalAsync(new AddBudgetPage
+            {
+                BindingContext = (Addbudget)e.SelectedItem 
+            });
+        }
+
+        private async void BudgetButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AddBudgetPage());
         }
     }
 }

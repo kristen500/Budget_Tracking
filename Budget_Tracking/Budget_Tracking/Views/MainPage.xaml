@@ -5,19 +5,59 @@
              x:Class="Budget_Tracking.Views.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="Budget_TrackingListView"
-                     Margin="20"
-                     ItemSelected="BudgetTrackingListView_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Budget">
+            <Grid>
 
-                        <TextCell Text="{Binding Text}" Detail="{Binding Date}"
-                                  TextColor="Black" 
-                                    DetailColor="Aqua" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <Button x:Name="BudgetButton" Clicked="BudgetButton_Clicked"
+                        Text="Please enter your budget"
+                        BackgroundColor="LightPink"
+                        />
+
+
+
+
+                <ListView x:Name="BudgetListView" Grid.Row="1"
+                          Margin="20"
+                          ItemSelected="BudgetListView_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Addbudget">
+                            <TextCell  x:Name="BudgetTextCell"
+                                Text="{Binding Text}" 
+                                    Detail="{Binding Date}" 
+                                    TextColor="Blue" 
+                                    DetailColor="LightPink" 
+                                    />
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="Expense_TrackingListView"
+                      Margin="20"
+                      ItemSelected="Expense_TrackingListView_ItemSelected"
+                          Grid.Row="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Budget">
+                            <TextCell  Text="{Binding Text}" 
+                                    Detail="{Binding Date}" 
+                                    TextColor="Black" 
+                                    DetailColor="LightPink" 
+                                    />
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+
+            
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
